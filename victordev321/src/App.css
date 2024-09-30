@@ -1,0 +1,145 @@
+/* Vídeo de fundo */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1; /* Garante que o vídeo fique no fundo */
+  }
+  
+  .app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .profile-card {
+    background: rgba(255, 255, 255, 0.1); /* Transparência */
+    padding: 40px;
+    width: 350px;
+    text-align: center;
+    border: 1px solid #000000a4;
+    border-radius: 10px;
+}
+
+
+  .profile-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Imagem de perfil */
+  .profile-image {
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+  }
+  
+  .profile-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-text p {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  /* Texto */
+  h1 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 5px 0;
+  }
+  
+  p {
+    color: #ddd;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Links */
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+
+  .social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .social-button:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+  }
+  
+  .social-button svg {
+    margin-right: 5px;
+  }
+
+  .profile-tech {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tech-button {
+    color: white;
+    width: calc(50% - 10px); /* Largura ajustada para 50% menos o gap */
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tech-button .profile-tech {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tech-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px 15px; 
+    color: white;
+    text-decoration: none; 
+    height: 30px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon-container {
+    margin-right: 10px; 
+}
