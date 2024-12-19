@@ -1,145 +1,602 @@
-/* Vídeo de fundo */
+/* Geral */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
+
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'JetBrains Mono', sans-serif;
 }
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 .background-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -1; /* Garante que o vídeo fique no fundo */
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.profile-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  width: 80%;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
   
-  .app-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .profile-card {
-    background: rgba(255, 255, 255, 0.1); /* Transparência */
-    padding: 40px;
-    width: 350px;
-    text-align: center;
-    border: 1px solid #000000a4;
-    border-radius: 10px;
+}
+
+.profile-main-card {
+  display: flex; /* Define layout em flexbox */
+  gap: 20px; /* Espaçamento entre as divs */
+  flex-wrap: wrap; /* Permite quebrar linha se necessário */
+  justify-content: center; /* Alinha as divs horizontalmente ao centro */
+  align-items: flex-start; /* Alinha ao topo das divs */
+}
+
+.teste {
+  background: rgba(255, 255, 255, 0.2); /* Fundo similar às outras divs */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Borda similar */
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px; /* Mesma largura das outras divs */
+  height: auto; /* Altura ajustável conforme o conteúdo */
+  text-align: center;
+  color: white;
 }
 
 
-  .profile-content {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  /* Imagem de perfil */
-  .profile-image {
-    max-width: 80px;
-    max-height: 80px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    margin-right: 20px;
-  }
-  
-  .profile-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .profile-text p {
-    font-size: 15px;
-    margin: 0;
-  }
-
-  /* Texto */
-  h1 {
-    color: #fff;
-    font-size: 1.5rem;
-    margin: 5px 0;
-  }
-  
-  p {
-    color: #ddd;
-    font-size: 1rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Links */
-  .social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-
-  .social-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid white;
-    border-radius: 10px;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
-  }
-  
-  .social-button:hover {
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(1.05);
-  }
-  
-  .social-button svg {
-    margin-right: 5px;
-  }
-
-  .profile-tech {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+/* Card de imagem */
+.profile-image-card {
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.tech-button {
-    color: white;
-    width: calc(50% - 10px); /* Largura ajustada para 50% menos o gap */
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.1);
+.profile-image-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.tech-button .profile-tech {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+.profile-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
 }
 
-.tech-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    padding: 5px 15px; 
-    color: white;
-    text-decoration: none; 
-    height: 30px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.1);
+.profile-text h1 {
+  margin: 0;
+  font-size: 20px;
+  display: inline-block;
 }
 
-.icon-container {
-    margin-right: 10px; 
+.profile-text p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Card de commits */
+.commit-card {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  height: 170px;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.commit-card h2 {
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.commit-card p {
+  color: #ddd;
+}
+
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ff5c5c;
+  color: white;
+  border-radius: 12px;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.badge svg {
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+/* Estrutura principal com duas colunas */
+.main-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.left-column, .right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Coluna esquerda */
+.left-column {
+  flex: 1; /* Ocupa espaço igual à direita */
+  max-width: 300px; /* Largura fixa */
+}
+
+/* Coluna direita */
+.right-column {
+  flex: 2; /* Coluna maior */
+  max-width: 700px;
+}
+
+.teste {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  color: white;
+  height: 400px;
+  width: 500px;
+}
+
+.dashboard-container {
+  background: rgba(0, 0, 0, 0.2); /* Transparência para o dashboard */
+  border-radius: 15px;
+  padding: 20px;
+  width: 60%;
+  max-width: 1400px;
+  margin: auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px); /* Efeito de borrado */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil */
+}
+
+/* Adicionando uma nova coluna */
+.main-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px;
+}
+
+.left-column, .right-column, .third-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Coluna esquerda */
+.left-column {
+  flex: 1;
+  max-width: 300px;
+}
+
+/* Coluna direita */
+.right-column {
+  flex: 2;
+  max-width: 700px;
+}
+
+/* Coluna terceira */
+.third-column {
+  flex: 1;
+  max-width: 300px;
+}
+
+
+/* Card médio */
+.teste.medium {
+  width: 50px;
+  height: 50px;
+}
+
+/* Card grande */
+.teste-large {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 50px;
+  width: 500px;
+  gap: 15px;
+}
+
+.teste-large h1{
+  margin: 0;
+  font-size: 16px;
+}
+
+.utils {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  height: 123px;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.utils h2{
+  color: white;
+  text-align: center;
+}
+
+.search-container {
+  position: relative;
+  width: 500px;
+  margin: 0;
+  display: flex; /* Para que o input e o botão fiquem na mesma linha */
+  align-items: center; /* Alinha o conteúdo verticalmente no centro */
+}
+
+/* Estilo para o input com efeito de desfoque e transparência */
+.search-input {
+  width: 100%;
+  padding: 10px 15px;
+  padding-left: 35px; /* Espaço para o ícone */
+  background: rgba(255, 255, 255, 0.2); /* Transparente */
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  backdrop-filter: blur(5px); /* Efeito de desfoque */
+  box-sizing: border-box; /* Garante que o padding não altere o tamanho do input */
+}
+
+/* Estilo do botão que envolve o ícone */
+.search-button {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Garantir que o botão esteja no canto direito */
+  transform: translateY(-50%); /* Alinha o ícone verticalmente ao centro */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+/* Estilo do ícone dentro do botão */
+.search-icon {
+  color: white;
+  font-size: 18px;
+}
+
+.spotify-card {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.spotify-info {
+  display: flex;
+  align-items: center;
+}
+
+.album-art {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+.song-details h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.song-details p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.spotify-icon {
+  margin-left: 15px;
+}
+
+.Nova1 {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 8px;
+  padding: 20px;
+  width: 70%;
+  max-width: 350px;
+  height: 511px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.Nova1 h1 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 25px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  width: 120px;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-btn:hover {
+  transform: scale(1.1);
+  background-color: #1db954; /* Cor de fundo ao passar o mouse (exemplo: Spotify) */
+}
+
+.social-btn span {
+  font-size: 18px;
+  background: transparent; /* Fundo transparente para o nome */
+}
+
+.social-btn svg {
+  color: white; /* Ícones brancos */
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.project-info {
+  flex-grow: 1;
+}
+
+.project-info h3 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.project-info p {
+  font-size: 14px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.tech-names {
+  margin-top: 10px;
+  color: #333;
+}
+
+.tech-name {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.code-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.project-info {
+  flex-grow: 1;
+}
+
+.project-info h3 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.project-info p {
+  font-size: 14px;
+  color: #555;
+  margin: 10px 0;
+}
+
+.tech-names {
+  margin-top: 10px;
+}
+
+.tech-name {
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.code-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+/* Estilos para a pasta de atalhos */
+.shortcut-folder {
+  margin-top: 10px;
+}
+
+.shortcut-folder h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.shortcut-folder p {
+  font-size: 16px;
+  color: #333;
+}
+
+.shortcut-icons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 colunas */
+  gap: 15px;
+  margin-top: 20px;
+  justify-items: center;
+  justify-content: center;
+}
+
+.shortcut-item {
+  text-align: center;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.6); /* Fundo transparente */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  padding: 10px;
+}
+
+.shortcut-item img {
+  width: 60px; /* Tamanho padronizado */
+  height: 60px; /* Tamanho padronizado */
+  object-fit: contain;
+}
+
+.shortcut-item span {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #333;
+}
+
+.shortcut-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.shortcut-icons{
+  justify-items: center;
 }

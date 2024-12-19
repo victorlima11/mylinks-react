@@ -1,86 +1,140 @@
-// src/App.tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Line } from 'react-chartjs-2';
+import { FaArrowLeft, FaProjectDiagram } from 'react-icons/fa';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import './App.css';
-import { FaGithub, FaDiscord, FaTwitch, FaYoutube, FaSteam } from 'react-icons/fa'; // Ícones
+import SpotifyCard from './SpotifyCard'; // Importe o componente do SpotifyCard
+import SocialLinks from './SocialLinks';
+import ProjectList from './ProjectList';
 
-import { FaReact } from 'react-icons/fa'; // Ícone do React
-import { FaNodeJs } from 'react-icons/fa'; // Ícone do Node.js
-import { SiTypescript } from 'react-icons/si'; // Ícone do TypeScript
-import { FaGitAlt } from 'react-icons/fa'; // Ícone do Git
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const App: React.FC = () => {
+  const [commitsData, setCommitsData] = useState<any>(null);
+  const [dates, setDates] = useState<string[]>([]);
+  const [data, setData] = useState<number[]>([]);
+
+  useEffect(() => {
+    async function fetchCommits() {
+      const res = await fetch('https://api.github.com/users/victorlima11/events');
+      const events = await res.json();
+      const commitDates: string[] = [];
+      const commitData: number[] = [];
+  
+      events.forEach((event: any) => {
+        if (event.type === 'PushEvent') {
+          const commitDate = new Date(event.created_at).toLocaleDateString('pt-BR', { weekday: 'short' }); // Mudar para exibir o nome do dia
+          const index = commitDates.indexOf(commitDate);
+          if (index === -1) {
+            commitDates.push(commitDate);
+            commitData.push(1);
+          } else {
+            commitData[index] += 1;
+          }
+        }
+      });
+  
+      setDates(commitDates);
+      setData(commitData);
+  
+      setCommitsData({
+        labels: commitDates,  // Usando commitDates como rótulos
+        datasets: [
+          {
+            label: 'Commits por dia',
+            data: commitData,
+            borderColor: '#2196F3',  // Definindo a cor da linha
+            backgroundColor: 'rgba(33, 150, 243, 0.2)',  // Cor de fundo da área do gráfico
+            borderWidth: 2,  // Largura da linha
+            tension: 0.4,  // Suaviza a linha
+          },
+        ],
+      });
+    }
+  
+    fetchCommits();
+  }, []);
+  
+
   return (
     <div className="app-container">
       <video autoPlay muted loop className="background-video">
-        <source src=".\videos\rain.mp4" type="video/mp4" />
+        <source src="./videos/rain.mp4" type="video/mp4" />
       </video>
 
-      <div className="profile-card">
-        <div className="profile-content">
-          <img src="/images/profile.jpg" alt="Perfil" className="profile-image" />
-          <div className='profile-text'>
-            <h1>Victor</h1>
-            <p>Desenvolvedor de Software</p>
+      {/* Dashboard transparente */}
+      <div className="dashboard-container">
+        <div className="main-layout">
+          {/* Coluna esquerda */}
+          <div className="left-column">
+            {/* Card de imagem */}
+            <div className="profile-image-card">
+              <div className="profile-image-text">
+                <img src="/images/profile.jpg" alt="Perfil" className="profile-image" />
+                <div className="profile-text">
+                  <h1>
+                    Victor{' '}
+                    <span className="badge">
+                      <FaProjectDiagram /> Dev
+                    </span>
+                  </h1>
+                  <p>Software Developer</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card de commits */}
+            <div className="commit-card">
+              <h2>Commits no GitHub</h2>
+              {commitsData ? (
+                <Line data={commitsData} height={150} />
+              ) : (
+                <p>Carregando gráficos de commits...</p>
+              )}
+            </div>
+
+            <div className="utils">
+                <SpotifyCard />
+            </div>
+          </div>
+
+          {/* Coluna direita */}
+          <div className="right-column">
+            <div className="teste">
+              <ProjectList/>
+            </div>
+            <div className="teste-large">
+              <h1>Search</h1>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault(); // Evita o envio padrão do formulário
+                  const query = (document.getElementById('search-input') as HTMLInputElement).value; // Obtém o valor do input
+                  if (query) {
+                    window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank'); // Pesquisa no Google
+                  }
+                }}
+              >
+                <div className="search-container">
+                  <input
+                    type="text"
+                    id="search-input"
+                    placeholder=""
+                    className="search-input"
+                  />
+                  <button type="submit" className="search-button">
+                    <i className="fas fa-search search-icon"></i> {/* Ícone de lupa minimalista */}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {/* Coluna terceira */}
+          <div className="third-column">
+              <SocialLinks/>
           </div>
         </div>
-        <div className="social-links">
-          <a href="https://discord.com/users/nyuh999" target="_blank" rel="noreferrer" className="social-button">
-            <FaDiscord />
-            <span>Discord</span>
-          </a>
-          <a href="https://github.com/victorlima11" target="_blank" rel="noreferrer" className="social-button">
-            <FaGithub />
-            <span>GitHub</span>
-          </a>
-          <a href="https://www.twitch.tv/nyuh999" target="_blank" rel="noreferrer" className="social-button">
-            <FaTwitch />
-            <span>Twitch</span>
-          </a>
-          <a href="https://www.youtube.com/@nyuh777" target="_blank" rel="noreferrer" className="social-button">
-            <FaYoutube />
-            <span>Youtube</span>
-          </a>
-          <a href="https://steamcommunity.com/profiles/76561199476061697/" target="_blank" rel="noreferrer" className="social-button">
-            <FaSteam />
-            <span>Steam</span>
-          </a>
-        </div>
-
-        <div className="profile-tech">
-          <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer" className='tech-button ts-button'>
-            <div className="icon-container">
-              <SiTypescript />
-            </div>
-            <div className="text-container">
-              <span>TypeScript</span>
-            </div>
-          </a>
-          <a href="https://reactjs.org/" target="_blank" rel="noreferrer" className='tech-button react-button'>
-            <div className="icon-container">
-              <FaReact />
-            </div>
-            <div className="text-container">
-              <span>React</span>
-            </div>
-          </a>
-          <a href="https://nodejs.org/" target="_blank" rel="noreferrer" className='tech-button node-button'>
-            <div className="icon-container">
-              <FaNodeJs />
-            </div>
-            <div className="text-container">
-              <span>Node.js</span>
-            </div>
-          </a>
-          <a href="https://git-scm.com/" target="_blank" rel="noreferrer" className='tech-button git-button'>
-            <div className="icon-container">
-              <FaGitAlt />
-            </div>
-            <div className="text-container">
-              <span>Git</span>
-            </div>
-          </a>
-        </div>
-
       </div>
     </div>
   );
